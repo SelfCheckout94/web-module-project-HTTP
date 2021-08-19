@@ -23,7 +23,13 @@ const App = (props) => {
       });
   }, []);
 
-  const deleteMovie = (id) => {};
+  const deleteMovie = (id) => {
+    setMovies(
+      movies.filter((movie) => {
+        return id !== movie.id;
+      })
+    );
+  };
 
   const addToFavorites = (movie) => {};
 
@@ -49,9 +55,12 @@ const App = (props) => {
               }}
             />
 
-            <Route path="/movies/:id">
-              <Movie />
-            </Route>
+            <Route
+              path="/movies/:id"
+              render={(props) => {
+                return <Movie {...props} deleteMovie={deleteMovie} />;
+              }}
+            />
 
             <Route path="/movies">
               <MovieList movies={movies} />

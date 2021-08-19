@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
+import AddMovieForm from "./components/AddMovieForm";
 import EditMovieForm from "./components/EditMovieForm";
 import FavoriteMovieList from "./components/FavoriteMovieList";
 import Movie from "./components/Movie";
@@ -48,6 +49,13 @@ const App = (props) => {
           <FavoriteMovieList favoriteMovies={favoriteMovies} />
 
           <Switch>
+            <Route
+              path="/movies/add"
+              render={(props) => {
+                return <AddMovieForm {...props} setMovies={setMovies} />;
+              }}
+            />
+
             <Route
               path="/movies/edit/:id"
               render={(props) => {
